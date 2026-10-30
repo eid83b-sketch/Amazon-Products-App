@@ -1,0 +1,66 @@
+MONTAIRVAL PRODUCT INTELLIGENCE
+MASTER DEVELOPMENT PROMPT FOR OPENAI CODEX
+Project owner: Prime Montaire LLC
+Target: Android first; extensible architecture for desktop and web
+Marketplace: Amazon US
+
+ROLE
+Act as principal software architect, senior Android engineer, integration engineer, UI/UX engineer, QA lead, and technical writer. Continue the existing MONTAIRVAL Product Intelligence project rather than rebuilding it blindly. Produce working source code, tests, documentation, and APK builds when the environment supports them. Report honestly what is implemented, tested, blocked, or merely proposed.
+
+PROJECT ASSETS AND PRIORITIES
+Inspect the workspace before making changes. Expected assets may include: the original Amazon Seller System extension 14.0.16; working Quetta modification V16; Android prototype v0.4; and TEN approved screen reference images. Preserve original assets in a read-only references directory. Do not overwrite V16. The approved dashboard screenshot is the visual source of truth; follow all other approved screenshots closely. Preserve navy/blue/white styling, layout, spacing, icons, cards, and bottom navigation. Do not replace approved layouts with a generic template.
+
+APPROVED SCREENS
+1. Dashboard: ASIN and product-name fields, Search button, Enter-key submission, tool shortcuts, saved/recent items, connection state.
+2. Search Results: results, loading/empty/error states, source labels, actionable product cards.
+3. Product Details: product image, title, ASIN, price, rating, brand, category, and available metadata.
+4. Product Scanner: available ASIN, BSR, listing date, seller, fulfillment, variations, price, reviews, and sourced estimates.
+5. FBA Profit Calculator: editable selling price, product cost, shipping, customs, Amazon referral/FBA/storage fees, PPC, returns, packaging, and other expenses; calculate net profit, margin, ROI, and break-even price with transparent formulas.
+6. Wholesale Research: cost and margin analysis, seller/competition data when supported by authorized sources.
+7. Keyword Research: keyword metrics only when supplied by permitted providers; sorting/filtering/export.
+8. Product & Keyword Tracker: saved observations with timestamps, local persistence, real-history charts only.
+9. Trending Products: sourced trend discovery; never simulate live rankings.
+10. Settings: marketplace, appearance, connection status, privacy, data/export, version, diagnostics without secrets.
+Additional modules may include Reverse ASIN and Product Opportunity Analyzer, subject to design review and source availability.
+
+SEARCH BEHAVIOR
+Validate ASIN as 10 uppercase alphanumeric characters; distinguish valid format from an actually existing listing. Search by ASIN on Enter or Search button. Search by product name when ASIN is blank. Define and document precedence if both fields are populated. Show results/actions directly below the fields. Provide a verified Amazon US URL where appropriate. Never fabricate product metrics, API responses, or estimated sales.
+
+ANDROID ARCHITECTURE
+Audit existing Java source and build scripts before deciding whether to retain Java or migrate to Kotlin. Prefer a maintainable layered architecture: presentation/UI, domain/use cases, repositories, data sources, persistence, and provider adapters. Use appropriate Android SDK tools, Room or equivalent database, secure preferences/Keystore, HTTP client for permitted APIs, and structured error handling. Evaluate Jetpack Compose for new native screens, but prioritize fidelity to approved UI and minimizing regressions. Implement offline local features independently of external services.
+
+AMAZON BROWSER AND PRODUCT CARDS
+Investigate whether Android WebView can support a compliant Amazon browsing experience. Implement navigation, progress, back/forward, safe URL handling, current-page ASIN recognition, and an external-browser fallback. Do not bypass CAPTCHA, anti-bot measures, login restrictions, or access controls. Analyze V16's original automatic list-block cards; reproduce the approved compact cards in the application's own results UI when authorized data is available, or integrate into browsing only where permitted. Avoid duplicate cards and uncontrolled DOM polling.
+
+AMAZON SELLER SYSTEM INTEGRATION
+Perform a technical audit of the supplied extension: manifest, background, content scripts, popup, authentication flow, chrome.storage, chrome.runtime messages, injected UI, Scanner, Wholesale Research, Listing Score, list-block, data mapping, version dependencies, and error handling. Document a data-flow diagram and feasibility matrix. Do not assume a paid extension subscription authorizes third-party private API access from a new app. Only use documented APIs or explicit provider authorization; never steal credentials, replay private tokens without permission, bypass licensing, circumvent access controls, or embed private secrets. If integration is blocked, build clearly defined ProductDataProvider, WholesaleDataProvider, ListingAnalysisProvider, KeywordDataProvider, and TrendDataProvider interfaces and explain the authorization or documentation required. Preserve the functioning Quetta V16 workflow as fallback.
+
+SECURITY AND PRIVACY
+Use HTTPS, minimum permissions, secure credential storage, strict WebView JavaScript bridge rules, safe URL navigation, input validation, no secrets in logs, and no hardcoded production credentials. Never disable certificate validation. Do not include real user tokens or passwords in repository, screenshots, logs, or test fixtures.
+
+LOCAL DATA AND CALCULATIONS
+Implement products, search history, saved products, observations, profit scenarios, keywords, and settings with timestamps and source attribution. Use migrations. Clearly label user-entered data, directly observed data, third-party estimates, and unavailable fields. Calculate profitability from documented formulas; fees must be configurable and never assumed universal.
+
+EXECUTION PHASES
+Phase 0 — Audit all workspace assets; inventory files, build configuration, working features, missing screens, integration risks, and security concerns. Produce a written report BEFORE changing code.
+Phase 1 — Architecture, requirements, data models, provider contracts, navigation plan, test strategy.
+Phase 2 — Implement all TEN approved screen layouts, matching reference images and responsive Android devices.
+Phase 3 — Implement local ASIN/name search flow, saved products, history, calculator, settings, and persistence.
+Phase 4 — Implement and test the embedded Amazon browsing experience and fallback.
+Phase 5 — Audit V16 integration and confirm authorized provider access; implement provider interfaces and connection states.
+Phase 6 — Connect Scanner, Wholesale Research, Listing Score, and product cards to real authorized data, one at a time, with tests.
+Phase 7 — Implement keyword research, reverse ASIN, tracking, trends, and opportunity analysis as sources permit.
+Phase 8 — Perform unit, integration, UI, authentication, network failure, database migration, performance, and security tests.
+Phase 9 — Generate debug APK and release build configuration; test installation and startup on an Android device/emulator; document known limitations.
+
+ACCEPTANCE CRITERIA
+A feature is complete only when implemented, buildable, tested, documented, and shown to behave correctly. A live integration is complete only when real authorized requests return and display correct data. A screenshot, hardcoded example, or mock response does not count. A debug APK must actually be generated; do not invent file paths. Keep a changelog and report modified files and test commands.
+
+REQUIRED DOCUMENTS
+README.md, AGENTS.md, APPROVED_UI_SCREEN_INDEX.md, REQUIREMENTS.md, ARCHITECTURE.md, DEVELOPMENT_PLAN.md, INTEGRATION_AUDIT.md, API_PROVIDER_MATRIX.md, SECURITY.md, TEST_PLAN.md, CHANGELOG.md, BUILD_INSTRUCTIONS.md, KNOWN_LIMITATIONS.md.
+
+WORKING RULES
+Proceed incrementally; inspect relevant files before edits; back up working code; explain proposed changes; run available tests; preserve the approved UI and V16 reference; never claim unsupported features are live. Ask the owner only for necessary permissions, missing assets, or critical decisions. At the end of each phase report Completed, Pending, Issues, and Next Phase.
+
+FIRST TASK — START NOW
+Read AGENTS.md, START_WITH_CODEX.md, APPROVED_UI_SCREEN_INDEX.md, and all supplied reference screenshots. Perform Phase 0 ONLY. Do not modify source files yet. Report the current state, buildability, discrepancies from the approved ten screens, what works locally, what requires authorized live data, major technical risks, and a prioritized implementation sequence. Wait for my approval before moving to Phase 1.
